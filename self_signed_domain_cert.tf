@@ -15,6 +15,8 @@ resource "tls_self_signed_cert" "testCACert" {
 		postal_code = "95559-1227"
 		serial_number = "2"
 	}
+	# about 68 years
+	validity_period_hours = 596520
 	allowed_uses = [
 		"cert_signing",
 	]
@@ -38,7 +40,8 @@ resource "tls_locally_signed_cert" "testDomainCert" {
 		ca_key_algorithm = "ECDSA"
 		ca_private_key_pem = "${tls_private_key.testCAKey.private_key_pem}"
 		ca_cert_pem = "${tls_self_signed_cert.testCACert.cert_pem}"
-
+		# about 68 years
+		validity_period_hours = 596520
 		allowed_uses = [
 			"server_auth",
     ]
